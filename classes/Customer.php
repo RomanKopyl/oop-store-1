@@ -2,7 +2,7 @@
 
 namespace OOPStore;
 
-class Customer
+class Customer implements CustomerInterface
 {
     private $firstName;
     private $lastName;
@@ -13,12 +13,12 @@ class Customer
         $this->lastName = $lastName;
     }
 
-    public function getFirstName()
+    public function getFirstName(): str
     {
         return $this->firstName;
     }
 
-    public function getLastName()
+    public function getLastName(): str
     {
         return $this->lastName;
     }

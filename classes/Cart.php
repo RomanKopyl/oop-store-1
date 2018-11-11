@@ -2,7 +2,7 @@
 
 namespace OOPStore;
 
-class Cart
+class Cart implements CartInterface
 {
     private $customer;
     private $products;
@@ -14,19 +14,21 @@ class Cart
         $this->products = [];
     }
 
-    public function getCustomer()
+    public function getCustomer(): Customer
     {
         return $this->customer;
     }
 
-    public function addProduct(Product $product)
+    public function addProduct(Product $product): bool
     {
         if (empty($this->purchase)) {
            $this->products[] = $product;
+           return true;
         }
+        return false;
     }
 
-    public function getTotal()
+    public function getTotal(): int
     {
         $total = 0;
 
