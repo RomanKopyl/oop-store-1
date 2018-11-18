@@ -1,33 +1,19 @@
 <?php
 
-namespace OOPStore;
+\spl_autoload_register(function ($class) {
+    $classFilename = __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR
+        . \str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+    require $classFilename;
+});
 
-define('CLASSES_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'classes');
-define('INTERFACES_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'interfaces');
-
-function requireDir($dir)
-{
-    // http://php.net/manual/en/function.dir.php
-    $d = dir($dir);
-    while (false !== ($classFile = $d->read())) {
-        if ($classFile === '.' || $classFile === '..') {
-            continue;
-        }
-        require_once($dir . DIRECTORY_SEPARATOR . $classFile); 
-    }
-}
-
-requireDir(INTERFACES_DIR);
-requireDir(CLASSES_DIR);
-
-$categoryTV = new Category('TV');
-$product1 = new Product($categoryTV, 'LG LX35', 1000000);
-$product2 = new Product($categoryTV, 'Samsung', 1000000);
-$product3 = new Product($categoryTV, 'Lenovo', 1000000);
-$product4 = new Product($categoryTV, 'Sony', 1000000);
-$product5 = new Product($categoryTV, 'Ericson', 1000000);
-$store = new Store();
-$cart = new Cart($store, new Customer('Roman', 'Kopyl'));
+$categoryTV = new \OOPStore\Category('TV');
+$product1 = new \OOPStore\Product($categoryTV, 'LG LX35', 1000000);
+$product2 = new \OOPStore\Product($categoryTV, 'Samsung', 1000000);
+$product3 = new \OOPStore\Product($categoryTV, 'Lenovo', 1000000);
+$product4 = new \OOPStore\Product($categoryTV, 'Sony', 1000000);
+$product5 = new \OOPStore\Product($categoryTV, 'Ericson', 1000000);
+$store = new \OOPStore\Store();
+$cart = new \OOPStore\Cart($store, new \OOPStore\Customer('Roman', 'Kopyl'));
 
 $store->addProduct($product1);
 $store->addProduct($product2);
